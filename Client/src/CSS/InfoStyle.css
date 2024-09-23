@@ -1,0 +1,63 @@
+.project-info-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+  }
+  
+  .project-info-header {
+    margin-bottom: 20px;
+  }
+  
+  .project-info-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #00d1ff;
+    margin-bottom: 10px;
+  }
+  
+  .project-info-description {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .project-info-meta {
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  
+  .project-info-details {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .project-info-milestones, .project-info-tasks {
+    flex: 1;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .milestone-info-list, .task-info-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .milestone-info-item, .task-info-item {
+    margin: 10px 0;
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .milestone-info-item strong, .task-info-item strong {
+    color: #00d1ff;
+  }
+  
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+  }
+  

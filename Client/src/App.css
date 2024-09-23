@@ -1,0 +1,543 @@
+/* Import Poppins and Orbitron fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    padding-top: 60px;
+}
+
+/* Wrapper for the whole app */
+.app-wrapper, .projects-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f0f8ff; /* Light background */
+}
+
+/* Navigation Bar */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; 
+    background-color: #00d1ff;
+    color: #fff;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+    border-bottom: 4px solid #64ffda;
+}
+
+header h1 {
+    font-size: 32px;
+    font-family: 'Orbitron', sans-serif; 
+    color: #fff;
+    cursor: pointer;
+    margin: 0;
+}
+
+header h1:hover {
+    color: #64ffda; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #64ffda;
+}
+
+/* Buttons */
+.button, .edit-and-delete-buttons button {
+    background-color: #00d1ff;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1rem;
+}
+
+.button:hover, .edit-and-delete-buttons button:hover {
+    background-color: #00b0e0;
+    transform: scale(1.05);
+}
+
+.all-tasks-btn, .add-tasks-btn, .all-projects-btn, .add-project-btn, .add-milestone-btn {
+    background-color: #e38a4a;  /* Orange */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-right: 10px;
+  }
+
+.all-tasks-btn:hover, .add-tasks-btn:hover, .all-projects-btn:hover, .add-project-btn:hover {
+    background-color: #dd744e;  /* Darker orange on hover */
+    transform: scale(1.05);
+  }
+
+/* Input Fields */
+input[type="text"], input[type="date"], textarea, select {
+    background-color: #f0f4f8;
+    color: #333;
+    border: 2px solid #64ffda;
+    border-radius: 6px;
+    padding: 10px;
+    width: 30%;
+    max-width: 400px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus, input[type="date"]:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #00d1ff;
+    box-shadow: 0 0 8px #64ffda;
+}
+
+/* Form Label */
+label {
+    font-size: 1.1rem;
+    color: #64ffda;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Main Content Area */
+.main-content, .form {
+    width: 100%;
+    padding: 20px;
+    background-color: #f0f8ff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    color: #333;
+}
+
+/* Search Bar */
+.search-bar {
+    width: 30%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #00d1ff;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.search-bar:focus {
+    border-color: #64ffda;
+}
+
+/* Cards */
+.card, .project-item {
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover, .project-item:hover {
+    transform: translateY(-5px);
+    border-color: #00d1ff;
+}
+
+/* Task Title with Click Event */
+.task-title, .project-title, .milestone-title {
+    font-size: 1.8rem;
+    color: #00d1ff;
+    margin-bottom: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.task-title:hover, .project-title:hover, .milestone-title:hover {
+    color: #64ffda;
+}
+
+
+.task-info {
+    display: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.task-info.show {
+    display: block;
+}
+
+/* Form Container */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    width: 100%;
+}
+
+.edit-and-delete-buttons .edit-btn {
+    background-color: #3498db; /* A prettier blue for Edit button */
+    color: white;
+    margin: 5px
+}
+
+.edit-btn:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+    transform: scale(1.05);
+    
+}
+
+/* Delete Button */
+.edit-and-delete-buttons .delete-btn {
+    background-color: #e74c3c; /* A vibrant red for Delete button */
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b; /* Darker red on hover */
+    transform: scale(1.05);
+}
+
+.page-title {
+    font-size: 2.5rem; /* Adjust the size for a bold, standout effect */
+    font-family: 'Orbitron', sans-serif; /* Matching font with a futuristic vibe */
+    color: #00d1ff; /* Bright, cool blue */
+    margin-bottom: 20px;
+    text-align: left;
+    text-shadow: 2px 2px 10px rgba(0, 217, 237, 0.4); /* Stronger shadow for depth */
+}
+
+/* Dashboard Styles */
+
+/* Dashboard wrapper */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+    padding: 20px;
+    background-color: #f0f8ff; /* Light background */
+}
+
+/* Summary Cards */
+.summary-card {
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    border-color: #00d1ff;
+}
+
+/* Progress Bar */
+.progress-bar {
+    background-color: #e0e0e0;
+    border-radius: 6px;
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+    height: 15px;
+}
+
+.progress-bar .progress {
+    background-color: #00d1ff;
+    height: 100%;
+    transition: width 0.3s ease-in-out;
+    border-radius: 6px;
+}
+
+/* Overdue Section */
+.overdue-section {
+    background-color: #ffe4e1;
+    border: 2px solid #ff6f61;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.overdue-section h3 {
+    color: #ff6f61;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Recent Activity */
+.recent-activity {
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recent-activity h3 {
+    color: #00d1ff;
+    font-size: 1.5rem;
+}
+
+.recent-activity p {
+    font-size: 1rem;
+    margin: 5px 0;
+}
+
+/* Quick Actions */
+.quick-actions {
+    background-color: #f0f4f8;
+    border: 2px solid #00d1ff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.quick-actions button {
+    margin: 10px;
+    background-color: #00d1ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.quick-actions button:hover {
+    background-color: #00b0e0;
+    transform: scale(1.05);
+}
+
+.dashboard-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .grid-item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .grid-item.full-width {
+    grid-column: span 2;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  /* Add/Edit Form Container with Gradient */
+.add-edit-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);  /* Soft gradient */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);  /* Deeper shadow for depth */
+    max-width: 600px;
+    margin: 20px auto;
+    width: 100%;
+}
+
+/* Input Fields */
+.add-edit-form-container input[type="text"], 
+.add-edit-form-container input[type="date"], 
+.add-edit-form-container textarea, 
+.add-edit-form-container select {
+    background-color: #f0f9ff;
+    color: #333;
+    border: 2px solid #00d1ff;
+    border-radius: 12px;  /* More rounded corners */
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Input Focus */
+.add-edit-form-container input[type="text"]:focus, 
+.add-edit-form-container input[type="date"]:focus, 
+.add-edit-form-container textarea:focus, 
+.add-edit-form-container select:focus {
+    outline: none;
+    border-color: #64ffda;  /* Neon focus */
+    box-shadow: 0 0 10px #64ffda;  /* Glow effect */
+}
+
+/* Form Labels */
+.add-edit-form-container label {
+    font-size: 1.2rem;
+    color: #00796b;  /* Softer color for labels */
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.add-edit-form-container button {
+    background-color: #00d1ff;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;  /* Softer button corners */
+    padding: 12px 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.1rem;
+}
+
+.add-edit-form-container button:hover {
+    background-color: #00b0e0;  /* Hover effect */
+    transform: scale(1.05);
+}
+
+/* Cancel Button */
+.add-edit-form-container button.cancel-btn {
+    background-color: #ff6f61;
+}
+
+.add-edit-form-container button.cancel-btn:hover {
+    background-color: #e5534d;
+}
+
+/* Submit and Cancel Buttons Together */
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.task-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .task-details {
+    flex: 1;
+  }
+  
+  .task-status {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  /* ProjectProgress.module.css */
+.project-progress-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+  }
+  
+  
+  .progress-bar {
+    width: 70%;
+    height: 12px;
+    background-color: #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .progress-bar-fill {
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 6px;
+    transition: width 0.4s ease;
+  }
+  
+  .percentage {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .completed-task {
+    text-decoration: line-through;
+    color: rgb(179, 211, 218);
+  }
+  
